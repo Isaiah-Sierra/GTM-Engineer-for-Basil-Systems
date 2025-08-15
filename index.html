@@ -13,7 +13,6 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            scroll-padding-top: 5rem; /* This is the fix for the sticky nav */
         }
         .text-gradient {
             background-clip: text;
@@ -30,7 +29,7 @@
 </head>
 <body class="bg-gray-950 text-gray-100 antialiased">
     <!-- Sticky Navigation Bar -->
-    <nav class="sticky-nav bg-gray-950/80 backdrop-blur-md border-b border-gray-800 shadow-lg transition-all duration-300">
+    <nav id="navbar" class="sticky-nav bg-gray-950/80 backdrop-blur-md border-b border-gray-800 shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4 py-3 md:py-4 flex flex-wrap justify-center sm:justify-between items-center max-w-7xl">
             <span class="hidden sm:block text-lg font-bold text-teal-400 tracking-wider">Basil Systems Proposal</span>
             <div class="flex flex-wrap gap-2 md:gap-4 justify-center" id="nav-menu">
@@ -432,7 +431,12 @@
                     const targetId = link.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                        const navHeight = document.getElementById('navbar').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
