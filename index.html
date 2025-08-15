@@ -431,7 +431,7 @@
                     const targetId = link.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     if (targetSection) {
-                        const navHeight = document.getElementById('navbar').offsetHeight;
+                        const navHeight = document.getElementById('navbar').offsetHeight + 16;
                         const targetPosition = targetSection.offsetTop - navHeight;
                         window.scrollTo({
                             top: targetPosition,
